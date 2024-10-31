@@ -14,7 +14,17 @@ const newTransactionSchema = z.object({
 export const addNewTransaction = authenticatedAction
   .schema(newTransactionSchema)
   .action(async ({ parsedInput, ctx }) => {
-    return
+    const transaction = await db.transaction.create({
+      data: {
+        authorId: ctx.currentUserData.userId,
+        purchaseDate: parsedInput.purchaseDate,
+        amount: parsedInput.amount,
+        title: parsedInput.title,
+        description: parsedInput.description,
+      },
+    })
+
+    return transaction
   })
 
 const getTransactionsSchema = z.object({
