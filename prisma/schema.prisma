@@ -18,7 +18,7 @@ model Transaction {
     purchaseDate DateTime
 
     title       String
-    description String?
+    description String @default("")
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
