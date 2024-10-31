@@ -8,7 +8,7 @@ const schema = z.object({
   purchaseDate: z.date(),
   amount: z.string(),
   title: z.string(),
-  description: z.string().optional(),
+  description: z.string().optional().default(''),
 })
 
 export const addNewTransaction = authenticatedAction
