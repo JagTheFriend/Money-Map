@@ -63,7 +63,7 @@ export default function NavbarUnauthorized() {
             </ul>
           </div>
           <Link className="btn btn-ghost text-xl rounded-lg" href="/">
-            Penny Wise
+            Money Map
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
