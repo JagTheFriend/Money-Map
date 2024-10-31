@@ -42,6 +42,9 @@ export const getTransactions = authenticatedAction
           lte: new Date(parsedInput.selectedYear, 12, 31),
         },
       },
+      orderBy: {
+        purchaseDate: 'asc',
+      },
     })
 
     return transactions
