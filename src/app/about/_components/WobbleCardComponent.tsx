@@ -52,7 +52,7 @@ export default function WobbleCardComponent() {
             <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-neutral-200">
               Organize your expenses into custom categories like food,
               entertainment, and transportation, allowing you to see exactly
-              where you're spending the most.
+              where you&apos;re spending the most.
             </p>
           </WobbleCard>
         </motion.span>
