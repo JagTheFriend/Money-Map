@@ -43,7 +43,7 @@ function Links() {
         className="mt-8 flex flex-wrap gap-4 text-center"
       >
         <motion.a
-          href="/auth"
+          href="/"
           className="bg-rose-500 block w-full rounded px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
           initial={{ background: '#e11d48' }}
           whileInView={{ background: ['#e11d48', '#fb7185', '#e11d48'] }}

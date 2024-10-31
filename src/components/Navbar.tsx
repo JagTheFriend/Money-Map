@@ -75,7 +75,7 @@ export default function NavbarUnauthorized() {
           <button
             className="btn btn-ghost rounded-lg"
             onClick={() => {
-              push('/auth?type=sign-in')
+              push('/')
             }}
           >
             <span className="border-b border-b-purple-500">Sign In</span>
