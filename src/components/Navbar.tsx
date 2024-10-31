@@ -1,34 +1,73 @@
 'use client'
 
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { type RedirectType, redirect } from 'next/navigation'
 
 function NavbarLinks() {
   return (
     <>
-      <li>
-        <Link className="rounded-lg" href="/">
-          <span className="border-b border-b-green-500">Home</span>
-        </Link>
-      </li>
-      <li>
-        <Link className="rounded-lg" href="/about">
-          <span className="border-b border-b-sky-500">About Us</span>
-        </Link>
-      </li>
-      <li>
-        <Link className="rounded-lg" href="/contact">
-          <span className="border-b border-b-rose-500">Contact</span>
-        </Link>
-      </li>
+      <SignedOut>
+        <li>
+          <Link className="rounded-lg" href="/">
+            <span className="border-b border-b-green-500">Home</span>
+          </Link>
+        </li>
+        <li>
+          <Link className="rounded-lg" href="/about">
+            <span className="border-b border-b-sky-500">About Us</span>
+          </Link>
+        </li>
+        <li>
+          <Link className="rounded-lg" href="/contact">
+            <span className="border-b border-b-rose-500">Contact</span>
+          </Link>
+        </li>
+      </SignedOut>
+      <SignedIn>
+        <li>
+          <Link className="rounded-lg" href="/">
+            <span className="border-b border-b-green-500">Add Transaction</span>
+          </Link>
+        </li>
+        <li>
+          <Link className="rounded-lg" href="/about">
+            <span className="border-b border-b-sky-500">See History</span>
+          </Link>
+        </li>
+        <li>
+          <Link className="rounded-lg" href="/contact">
+            <span className="border-b border-b-rose-500">Contact</span>
+          </Link>
+        </li>
+      </SignedIn>
     </>
   )
 }
 
-export default function NavbarUnauthorized() {
-  const { push } = useRouter()
+function AuthButton() {
+  return (
+    <>
+      <SignedOut>
+        <button
+          className="btn btn-ghost rounded-lg"
+          onClick={() => {
+            redirect('/auth', 'replace' as RedirectType)
+          }}
+        >
+          <span className="border-b border-b-purple-500">Sign In</span>
+        </button>
+      </SignedOut>
 
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
+    </>
+  )
+}
+
+export default function Navbar() {
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -72,14 +111,7 @@ export default function NavbarUnauthorized() {
           </ul>
         </div>
         <div className="navbar-end">
-          <button
-            className="btn btn-ghost rounded-lg"
-            onClick={() => {
-              push('/')
-            }}
-          >
-            <span className="border-b border-b-purple-500">Sign In</span>
-          </button>
+          <AuthButton />
         </div>
       </div>
     </motion.section>
