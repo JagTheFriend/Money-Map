@@ -1,9 +1,8 @@
 'use client'
-import React from 'react'
 
 import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
-import { CanvasRevealEffect } from '~/components/ui/canvas-reveal-effect'
+import { type ReactNode, useState } from 'react'
 
 export default function ContactDetailsCards() {
   return (
@@ -22,12 +21,7 @@ export default function ContactDetailsCards() {
             title="github.com/JagTheFriend"
             link="https://github.com/JagTheFriend"
             icon={<GithubIcon />}
-          >
-            <CanvasRevealEffect
-              animationSpeed={3}
-              containerClassName="bg-emerald-900"
-            />
-          </Card>
+          />
         </motion.span>
         <motion.span
           initial={{
@@ -42,13 +36,7 @@ export default function ContactDetailsCards() {
             title="JagTheFriend12@gmail.com"
             link="mailto:JagTheFriend12@gmail.com"
             icon={<EmailIcon />}
-          >
-            <CanvasRevealEffect
-              animationSpeed={3}
-              containerClassName="bg-sky-600"
-              colors={[[125, 211, 252]]}
-            />
-          </Card>
+          />
         </motion.span>
       </div>
     </section>
@@ -63,10 +51,10 @@ const Card = ({
 }: {
   title: string
   link: string
-  icon: React.ReactNode
-  children?: React.ReactNode
+  icon: ReactNode
+  children?: ReactNode
 }) => {
-  const [hovered, setHovered] = React.useState(false)
+  const [hovered, setHovered] = useState(false)
   return (
     <div
       onMouseEnter={() => setHovered(true)}
