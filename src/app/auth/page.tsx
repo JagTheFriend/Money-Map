@@ -7,12 +7,14 @@ export async function generateMetadata(
   { searchParams }: Prop,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
-  if (searchParams.type === 'login') {
+  const { type } = await searchParams
+  if (type === 'login') {
     return { title: 'Login to Money Map' }
   }
   return { title: 'Register for Money Map' }
 }
 
-export default function AuthPage({ searchParams }: Prop) {
-  return <FormComponent type={searchParams.type ?? ''} />
+export default async function AuthPage({ searchParams }: Prop) {
+  const { type } = await searchParams
+  return <FormComponent type={type ?? ''} />
 }
