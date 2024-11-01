@@ -1,20 +1,20 @@
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import FormComponent from './FormComponent'
 
-type Prop = { searchParams: { type: string | undefined } }
+type SearchParams = Promise<{ type: string }>
 
-export async function generateMetadata(
-  { searchParams }: Prop,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
-  const { type } = await searchParams
+export async function generateMetadata(props: {
+  searchParams: SearchParams
+}): Promise<Metadata> {
+  const { type } = await props.searchParams
+
   if (type === 'login') {
     return { title: 'Login to Money Map' }
   }
   return { title: 'Register for Money Map' }
 }
 
-export default async function AuthPage({ searchParams }: Prop) {
-  const { type } = await searchParams
+export default async function AuthPage(props: { searchParams: SearchParams }) {
+  const { type } = await props.searchParams
   return <FormComponent type={type ?? ''} />
 }
