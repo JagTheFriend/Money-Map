@@ -8,7 +8,7 @@ const newTransactionSchema = z.object({
   purchaseDate: z.date(),
   amount: z.string(),
   title: z.string(),
-  description: z.string().optional().default(''),
+  description: z.string().default(''),
 })
 
 export const addNewTransaction = authenticatedAction
@@ -48,4 +48,46 @@ export const getTransactions = authenticatedAction
     })
 
     return transactions
+  })
+
+const updateTransactionSchema = z.object({
+  transactionId: z.string(),
+  amount: z.string(),
+  purchaseDate: z.date(),
+  title: z.string(),
+  description: z.string(),
+})
+
+export const updateTransaction = authenticatedAction
+  .schema(updateTransactionSchema)
+  .action(async ({ parsedInput, ctx }) => {
+    const transaction = await db.transaction.update({
+      where: {
+        id: parsedInput.transactionId,
+      },
+      data: {
+        amount: parsedInput.amount,
+        purchaseDate: parsedInput.purchaseDate,
+        title: parsedInput.title,
+        description: parsedInput.description,
+      },
+    })
+
+    return transaction
+  })
+
+const deleteTransactionSchema = z.object({
+  transactionId: z.string(),
+})
+
+export const deleteTransaction = authenticatedAction
+  .schema(deleteTransactionSchema)
+  .action(async ({ parsedInput, ctx }) => {
+    const transaction = await db.transaction.delete({
+      where: {
+        id: parsedInput.transactionId,
+      },
+    })
+
+    return transaction
   })
