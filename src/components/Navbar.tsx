@@ -3,7 +3,6 @@
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
 
 function NavbarLinks() {
   return (
@@ -50,14 +49,9 @@ function AuthButton() {
   return (
     <>
       <SignedOut>
-        <button
-          className="btn btn-ghost rounded-lg"
-          onClick={() => {
-            redirect('/auth')
-          }}
-        >
+        <Link className="btn btn-ghost rounded-lg" href="/auth">
           <span className="border-b border-b-purple-500">Sign In</span>
-        </button>
+        </Link>
       </SignedOut>
 
       <SignedIn>
