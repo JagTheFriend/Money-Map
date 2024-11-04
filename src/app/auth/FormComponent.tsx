@@ -2,7 +2,6 @@
 
 import { SignIn, SignUp } from '@clerk/nextjs'
 import { motion } from 'framer-motion'
-import Head from 'next/head'
 
 export default function FormComponent({ type }: { type: string }) {
   return (
@@ -14,16 +13,10 @@ export default function FormComponent({ type }: { type: string }) {
     >
       {type === 'login' ? (
         <>
-          <Head>
-            <title>Login to Money Map</title>
-          </Head>
           <SignIn routing="hash" />
         </>
       ) : (
         <>
-          <Head>
-            <title>Sign In/Register for Money Map</title>
-          </Head>
           <SignUp routing="hash" />
         </>
       )}
