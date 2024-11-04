@@ -49,7 +49,7 @@ function AuthButton() {
   return (
     <>
       <SignedOut>
-        <Link className="btn btn-ghost rounded-lg" href="/auth">
+        <Link className="btn btn-ghost rounded-lg" href="/auth?type=login">
           <span className="border-b border-b-purple-500">Sign In</span>
         </Link>
       </SignedOut>
