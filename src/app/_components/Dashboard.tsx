@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation'
+import ShowCurrentlySelectedYear from './ShowCurrentlySelectedYear'
 
 export default function Dashboard({ year }: { year: string | undefined }) {
   if (!year) {
@@ -7,8 +8,8 @@ export default function Dashboard({ year }: { year: string | undefined }) {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold">Dashboard</h1>
+    <div className="flex flex-col">
+      <ShowCurrentlySelectedYear year={year} />
     </div>
   )
 }
