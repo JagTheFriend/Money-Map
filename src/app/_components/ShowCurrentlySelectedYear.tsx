@@ -11,7 +11,7 @@ type ValuePiece = Date | null
 type Value = ValuePiece | [ValuePiece, ValuePiece]
 
 export default function ShowCurrentlySelectedYear({ year }: { year: string }) {
-  const [value, onChange] = useState<Value>(new Date())
+  const [value, onChange] = useState<Value>(new Date(parseInt(year), 0, 1))
 
   return (
     <section>
