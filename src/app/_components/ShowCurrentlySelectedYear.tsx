@@ -2,6 +2,7 @@
 
 import DatePicker from 'react-date-picker'
 
+import { motion } from 'framer-motion'
 import { redirect } from 'next/navigation'
 import 'react-calendar/dist/Calendar.css'
 import 'react-date-picker/dist/DatePicker.css'
@@ -11,7 +12,12 @@ type Value = ValuePiece | [ValuePiece, ValuePiece]
 
 export default function ShowCurrentlySelectedYear({ year }: { year: string }) {
   return (
-    <section className="text-xl flex flex-row justify-center gap-2 m-2">
+    <motion.section
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1.3, ease: 'easeInOut' }}
+      className="text-xl flex flex-row justify-center gap-2 m-2"
+    >
       Year:
       <DatePicker
         onChange={(e: Value) => {
@@ -24,6 +30,6 @@ export default function ShowCurrentlySelectedYear({ year }: { year: string }) {
         clearIcon={false}
         calendarIcon={false}
       />
-    </section>
+    </motion.section>
   )
 }
