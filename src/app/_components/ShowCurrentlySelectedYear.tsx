@@ -3,6 +3,9 @@
 import { useState } from 'react'
 import DatePicker from 'react-date-picker'
 
+import 'react-calendar/dist/Calendar.css'
+import 'react-date-picker/dist/DatePicker.css'
+
 type ValuePiece = Date | null
 
 type Value = ValuePiece | [ValuePiece, ValuePiece]
@@ -12,7 +15,7 @@ export default function ShowCurrentlySelectedYear({ year }: { year: string }) {
 
   return (
     <section>
-      <DatePicker onChange={onChange} value={value} />
+      <DatePicker onChange={onChange} value={value} maxDetail="year" />
     </section>
   )
 }
