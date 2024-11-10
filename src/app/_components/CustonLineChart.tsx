@@ -1,6 +1,7 @@
 'use client'
 import {
   CartesianGrid,
+  Legend,
   Line,
   LineChart,
   ResponsiveContainer,
@@ -63,6 +64,7 @@ export const CustomLineChart = () => {
         <XAxis dataKey="name" />
         <YAxis dataKey="uv" />
         <Tooltip />
+        <Legend />
       </LineChart>
     </ResponsiveContainer>
   )
