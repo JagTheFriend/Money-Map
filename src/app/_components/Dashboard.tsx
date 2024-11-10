@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation'
+import { CustomRadarChart } from './CustomRadarChart'
 import { CustomLineChart } from './CustonLineChart'
 import ShowCurrentlySelectedYear from './ShowCurrentlySelectedYear'
 
@@ -23,6 +24,7 @@ export default function Dashboard({ year }: { year: string | undefined }) {
         <div className="grid lg:grid-cols-2 grid-cols-1 w-full">
           <GridItem children={<CustomLineChart />} />
           <GridItem children={<CustomLineChart />} />
+          <GridItem children={<CustomRadarChart />} />
         </div>
       </div>
     </div>
