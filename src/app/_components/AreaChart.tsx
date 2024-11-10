@@ -1,8 +1,8 @@
 'use client'
 import {
-  Area,
-  AreaChart,
   CartesianGrid,
+  Line,
+  LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -57,13 +57,13 @@ const data = [
 export const CustomAreaChart = () => {
   return (
     <ResponsiveContainer height="100%" width="100%">
-      <AreaChart data={data} height={400} width={500}>
-        <Area type="monotone" dataKey="amt" />
-        <CartesianGrid stroke="#ccc" />
+      <LineChart data={data} height={4000} width={5000}>
+        <Line type="monotone" dataKey="amt" />
+        <CartesianGrid stroke="#303030" strokeDasharray={'5 5'} />
         <XAxis dataKey="name" />
         <YAxis dataKey="uv" />
         <Tooltip />
-      </AreaChart>
+      </LineChart>
     </ResponsiveContainer>
   )
 }
