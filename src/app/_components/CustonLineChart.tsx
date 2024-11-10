@@ -54,7 +54,7 @@ const data = [
   },
 ]
 
-export const CustomAreaChart = () => {
+export const CustomLineChart = () => {
   return (
     <ResponsiveContainer height="100%" width="100%">
       <LineChart data={data} height={4000} width={5000}>

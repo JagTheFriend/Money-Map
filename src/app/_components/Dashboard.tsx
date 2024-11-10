@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
-import { CustomAreaChart } from './AreaChart'
+import { CustomLineChart } from './CustonLineChart'
 import ShowCurrentlySelectedYear from './ShowCurrentlySelectedYear'
 
 const GridItem = ({ children }: { children: React.ReactNode }) => {
@@ -21,8 +21,8 @@ export default function Dashboard({ year }: { year: string | undefined }) {
       <ShowCurrentlySelectedYear year={year} />
       <div className="flex flex-col justify-center items-center px-4 w-full">
         <div className="grid lg:grid-cols-2 grid-cols-1 w-full">
-          <GridItem children={<CustomAreaChart />} />
-          <GridItem children={<CustomAreaChart />} />
+          <GridItem children={<CustomLineChart />} />
+          <GridItem children={<CustomLineChart />} />
         </div>
       </div>
     </div>
