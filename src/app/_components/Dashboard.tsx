@@ -1,8 +1,9 @@
 import { redirect } from 'next/navigation'
 import { CustomRadarChart } from './CustomRadarChart'
 import { CustomTable } from './CustomTable'
-import { CustomLineChart } from './CustonLineChart'
+import { MonthLineChart } from './MonthLineChart'
 import ShowCurrentlySelectedYear from './ShowCurrentlySelectedYear'
+import { YearLineChart } from './YearLineChart'
 
 const GridItem = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -23,8 +24,8 @@ export default function Dashboard({ year }: { year: string | undefined }) {
       <ShowCurrentlySelectedYear year={year} />
       <div className="flex flex-col justify-center items-center px-4 w-full">
         <div className="grid lg:grid-cols-2 grid-cols-1 w-full">
-          <GridItem children={<CustomLineChart />} />
-          <GridItem children={<CustomLineChart />} />
+          <GridItem children={<YearLineChart />} />
+          <GridItem children={<MonthLineChart />} />
           <GridItem children={<CustomRadarChart />} />
           <GridItem children={<CustomTable />} />
         </div>
