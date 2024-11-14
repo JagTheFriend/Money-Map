@@ -12,7 +12,9 @@ export function attachMetadataToTransaction(transactions: Transaction[]) {
       ...transaction,
       month: transaction.purchaseDate.getMonth(),
       year: transaction.purchaseDate.getFullYear(),
-      dayName: transaction.purchaseDate.toString().split(' ')[0],
+      dayName: transaction.purchaseDate.toLocaleString('en-us', {
+        weekday: 'long',
+      }),
     }
   })
 }
