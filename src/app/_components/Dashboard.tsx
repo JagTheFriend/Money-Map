@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation'
+import { getTransactions } from '~/server/post-actions'
 import { CustomRadarChart } from './CustomRadarChart'
 import { CustomTable } from './CustomTable'
 import { MonthLineChart } from './MonthLineChart'
@@ -13,11 +14,15 @@ const GridItem = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-export default function Dashboard({ year }: { year: string | undefined }) {
+export default async function Dashboard({
+  year,
+}: { year: string | undefined }) {
   if (!year) {
     const currentYear = new Date().getFullYear()
     redirect(`?year=${currentYear}`)
   }
+
+  const transactions = await getTransactions({ selectedYear: parseInt(year) })
 
   return (
     <div className="flex flex-col w-full">
