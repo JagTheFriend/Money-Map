@@ -17,7 +17,7 @@ export const YearLineChart = ({
   return (
     <ResponsiveContainer height="100%" width="100%">
       <LineChart data={transactionsData} height={4000} width={5000}>
-        <Line type="monotone" dataKey="totalAmount" />
+        <Line name="Expense" type="monotone" dataKey="totalAmount" />
         <CartesianGrid stroke="#303030" strokeDasharray={'5 5'} />
         <XAxis dataKey="monthName" />
         <YAxis dataKey="totalAmount" />
