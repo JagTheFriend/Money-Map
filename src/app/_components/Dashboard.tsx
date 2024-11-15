@@ -37,7 +37,9 @@ export default async function Dashboard({
             children={<YearLineChart transactionsData={transactions.data} />}
           />
           <GridItem children={<MonthLineChart />} />
-          <GridItem children={<CustomRadarChart />} />
+          <GridItem
+            children={<CustomRadarChart transactionsData={transactions.data} />}
+          />
           <GridItem children={<CustomTable />} />
         </div>
       </div>

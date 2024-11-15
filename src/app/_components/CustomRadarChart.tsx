@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from 'recharts'
+import type { CustomTransactionType } from '~/lib/types'
 
 const data = [
   {
@@ -55,16 +56,18 @@ const data = [
   },
 ]
 
-export const CustomRadarChart = () => {
+export const CustomRadarChart = ({
+  transactionsData,
+}: { transactionsData: CustomTransactionType[] }) => {
   return (
     <ResponsiveContainer height="100%" width="100%">
-      <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
+      <RadarChart cx="50%" cy="50%" outerRadius="80%" data={transactionsData}>
         <PolarGrid />
-        <PolarAngleAxis dataKey="name" />
+        <PolarAngleAxis dataKey="monthName" />
         <PolarRadiusAxis />
         <Radar
           name="Expense"
-          dataKey="amt"
+          dataKey="totalAmount"
           stroke="#8884d8"
           fill="#8884d8"
           fillOpacity={0.6}
