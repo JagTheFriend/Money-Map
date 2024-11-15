@@ -36,7 +36,9 @@ export default async function Dashboard({
           <GridItem
             children={<YearLineChart transactionsData={transactions.data} />}
           />
-          <GridItem children={<MonthLineChart />} />
+          <GridItem
+            children={<MonthLineChart transactionsData={transactions.data} />}
+          />
           <GridItem
             children={<CustomRadarChart transactionsData={transactions.data} />}
           />
