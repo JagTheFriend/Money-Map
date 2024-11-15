@@ -2,6 +2,7 @@
 
 import { z } from 'zod'
 import { authenticatedAction } from '~/lib/safe-action'
+import { attachMetadataToTransaction } from '~/lib/utils'
 import { db } from './db'
 
 const newTransactionSchema = z.object({
@@ -47,7 +48,7 @@ export const getTransactions = authenticatedAction
       },
     })
 
-    return transactions
+    return attachMetadataToTransaction(transactions)
   })
 
 const updateTransactionSchema = z.object({

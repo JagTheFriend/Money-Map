@@ -1,4 +1,5 @@
 'use client'
+import { motion } from 'framer-motion'
 import {
   Legend,
   PolarAngleAxis,
@@ -9,6 +10,7 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from 'recharts'
+import type { CustomTransactionType } from '~/lib/types'
 
 const data = [
   {
@@ -55,23 +57,32 @@ const data = [
   },
 ]
 
-export const CustomRadarChart = () => {
+export const CustomRadarChart = ({
+  transactionsData,
+}: { transactionsData: CustomTransactionType[] }) => {
   return (
-    <ResponsiveContainer height="100%" width="100%">
-      <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
-        <PolarGrid />
-        <PolarAngleAxis dataKey="name" />
-        <PolarRadiusAxis />
-        <Radar
-          name="Expense"
-          dataKey="amt"
-          stroke="#8884d8"
-          fill="#8884d8"
-          fillOpacity={0.6}
-        />
-        <Legend />
-        <Tooltip />
-      </RadarChart>
-    </ResponsiveContainer>
+    <motion.div
+      initial={{ x: '-100%' }}
+      whileInView={{ x: '0' }}
+      transition={{ duration: 2, ease: 'easeInOut' }}
+      className="w-full h-full"
+    >
+      <ResponsiveContainer height="100%" width="100%">
+        <RadarChart cx="50%" cy="50%" outerRadius="80%" data={transactionsData}>
+          <PolarGrid />
+          <PolarAngleAxis dataKey="monthName" />
+          <PolarRadiusAxis />
+          <Radar
+            name="Expense"
+            dataKey="totalAmount"
+            stroke="#8884d8"
+            fill="#8884d8"
+            fillOpacity={0.6}
+          />
+          <Legend />
+          <Tooltip />
+        </RadarChart>
+      </ResponsiveContainer>
+    </motion.div>
   )
 }
