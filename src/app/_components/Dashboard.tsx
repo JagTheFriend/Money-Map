@@ -40,7 +40,9 @@ export default async function Dashboard({
           <GridItem
             children={<CustomRadarChart transactionsData={transactions.data} />}
           />
-          <GridItem children={<CustomTable />} />
+          <GridItem
+            children={<CustomTable transactionsData={transactions.data} />}
+          />
         </div>
       </div>
     </div>
