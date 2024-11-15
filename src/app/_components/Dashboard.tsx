@@ -24,12 +24,18 @@ export default async function Dashboard({
 
   const transactions = await getTransactions({ selectedYear: parseInt(year) })
 
+  if (!transactions?.data) {
+    return <>No transactions found</>
+  }
+
   return (
     <div className="flex flex-col w-full">
       <ShowCurrentlySelectedYear year={year} />
       <div className="flex flex-col justify-center items-center px-4 w-full">
         <div className="grid lg:grid-cols-2 grid-cols-1 w-full">
-          <GridItem children={<YearLineChart />} />
+          <GridItem
+            children={<YearLineChart transactionsData={transactions.data} />}
+          />
           <GridItem children={<MonthLineChart />} />
           <GridItem children={<CustomRadarChart />} />
           <GridItem children={<CustomTable />} />
