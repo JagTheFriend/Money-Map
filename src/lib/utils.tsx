@@ -24,7 +24,5 @@ export function attachMetadataToTransaction(transactions: Transaction[]) {
     })
   })
 
-  console.log(data)
-
   return data
 }
