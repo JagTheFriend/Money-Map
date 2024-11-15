@@ -9,16 +9,16 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
-import { data } from './data'
+import type { CustomTransactionType } from '~/lib/types'
 
-export const YearLineChart = () => {
+export const YearLineChart = ({ data }: { data: CustomTransactionType[] }) => {
   return (
     <ResponsiveContainer height="100%" width="100%">
       <LineChart data={data} height={4000} width={5000}>
-        <Line type="monotone" dataKey="amt" />
+        <Line type="monotone" dataKey="totalAmount" />
         <CartesianGrid stroke="#303030" strokeDasharray={'5 5'} />
-        <XAxis dataKey="name" />
-        <YAxis dataKey="uv" />
+        <XAxis dataKey="monthName" />
+        <YAxis dataKey="totalAmount" />
         <Tooltip />
         <Legend />
       </LineChart>
