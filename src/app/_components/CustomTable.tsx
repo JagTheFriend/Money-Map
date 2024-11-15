@@ -1,5 +1,6 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import type { CustomTransactionType } from '~/lib/types'
 
 function TableContent({ transaction }: { transaction: CustomTransactionType }) {
@@ -28,12 +29,17 @@ export const CustomTable = ({
   transactionsData,
 }: { transactionsData: CustomTransactionType[] }) => {
   return (
-    <div className="w-full overflow-x-auto overflow-y-auto">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 3, ease: 'easeInOut' }}
+      className="w-full overflow-x-auto overflow-y-auto"
+    >
       <table className="table table-pin-rows">
         {transactionsData.map((transaction) => (
           <TableContent key={transaction.monthName} transaction={transaction} />
         ))}
       </table>
-    </div>
+    </motion.div>
   )
 }

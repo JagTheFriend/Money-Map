@@ -29,7 +29,7 @@ export default async function Dashboard({
   }
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full overflow-hidden">
       <ShowCurrentlySelectedYear year={year} />
       <div className="flex flex-col justify-center items-center px-4 w-full">
         <div className="grid lg:grid-cols-2 grid-cols-1 w-full">
