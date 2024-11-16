@@ -1,5 +1,6 @@
 'use server'
 
+import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 import { authenticatedAction } from '~/lib/safe-action'
 import { attachMetadataToTransaction } from '~/lib/utils'
@@ -24,7 +25,7 @@ export const addNewTransaction = authenticatedAction
         description: parsedInput.description,
       },
     })
-
+    revalidatePath('/?year=' + parsedInput.purchaseDate.getFullYear())
     return transaction
   })
 

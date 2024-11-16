@@ -1,8 +1,96 @@
 'use client'
 
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { IconX } from '@tabler/icons-react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { toast } from 'sonner'
+import { addNewTransaction } from '~/server/post-actions'
+
+function AddTransactionButton() {
+  return (
+    <>
+      <li>
+        <button
+          className="rounded-lg"
+          onClick={() =>
+            (
+              document.getElementById(
+                'add_transaction_modal',
+              ) as HTMLDialogElement
+            ).showModal()
+          }
+        >
+          <span className="border-b border-b-green-500">Add Transaction</span>
+        </button>
+      </li>
+      <dialog id="add_transaction_modal" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              <IconX />
+            </button>
+          </form>
+
+          <h3 className="font-bold text-lg mb-4">Add Transaction</h3>
+          <form
+            className="flex gap-4 flex-col"
+            action={async (formData: FormData) => {
+              const returnData = await addNewTransaction({
+                title: formData.get('title') as string,
+                description: formData.get('description') as string,
+                amount: formData.get('amount') as string,
+                purchaseDate: new Date(formData.get('date') as string),
+              })
+              if (!returnData?.data) {
+                toast.error('Failed to add transaction')
+              } else {
+                toast.success('Transaction added successfully')
+              }
+            }}
+          >
+            <input
+              required
+              name="title"
+              type="text"
+              placeholder="Enter Title"
+              className="grow input input-bordered w-full max-w-xs"
+            />
+            <input
+              required
+              name="description"
+              type="text"
+              placeholder="Enter Description"
+              className="grow input input-bordered w-full max-w-xs"
+            />
+            <div className="flex flex-row gap-4">
+              <input
+                required
+                name="amount"
+                type="number"
+                placeholder="Enter Amount"
+                className="grow input input-bordered w-full max-w-xs"
+              />
+              <input
+                required
+                name="date"
+                type="date"
+                placeholder="Pick a date"
+                className="grow input input-bordered w-full max-w-xs"
+              />
+            </div>
+            <button
+              className="btn btn-ghost btn-outline rounded-lg"
+              type="submit"
+            >
+              Add
+            </button>
+          </form>
+        </div>
+      </dialog>
+    </>
+  )
+}
 
 function NavbarLinks() {
   return (
@@ -25,11 +113,7 @@ function NavbarLinks() {
         </li>
       </SignedOut>
       <SignedIn>
-        <li>
-          <Link className="rounded-lg" href="/">
-            <span className="border-b border-b-green-500">Add Transaction</span>
-          </Link>
-        </li>
+        <AddTransactionButton />
         <li>
           <Link className="rounded-lg" href="/about">
             <span className="border-b border-b-sky-500">See History</span>
