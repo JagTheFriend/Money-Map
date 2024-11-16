@@ -37,6 +37,7 @@
     "recharts": "^2.13.3",
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.4",
+    "uniqolor": "^1.1.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {
