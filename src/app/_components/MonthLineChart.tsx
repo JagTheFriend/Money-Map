@@ -1,5 +1,4 @@
 'use client'
-import type { Transaction } from '@prisma/client'
 import { motion } from 'framer-motion'
 import {
   CartesianGrid,
@@ -11,11 +10,8 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
+import uniqolor from 'uniqolor'
 import type { CustomTransactionType } from '~/lib/types'
-
-function LineGraph({ transactions }: { transactions: Transaction[] }) {
-  return <></>
-}
 
 export const MonthLineChart = ({
   transactionsData,
@@ -33,9 +29,17 @@ export const MonthLineChart = ({
           {transactionsData.map((transaction) => {
             return (
               <Line
+                key={transaction.monthName + Math.random()}
                 data={transaction.transactions}
                 type="monotone"
                 dataKey="amount"
+                name={transaction.monthName}
+                stroke={
+                  uniqolor(transaction.monthName + Math.random(), {
+                    lightness: 50,
+                    format: 'hex',
+                  }).color
+                }
               />
             )
           })}

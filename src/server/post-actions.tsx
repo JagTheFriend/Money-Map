@@ -40,7 +40,7 @@ export const getTransactions = authenticatedAction
         authorId: ctx.currentUserData.userId,
         purchaseDate: {
           gte: new Date(parsedInput.selectedYear, 0, 1),
-          lte: new Date(parsedInput.selectedYear, 12, 31),
+          lte: new Date(parsedInput.selectedYear, 11, 31),
         },
       },
       orderBy: {

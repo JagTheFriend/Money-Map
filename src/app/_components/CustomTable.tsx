@@ -1,5 +1,6 @@
 'use client'
 
+import { format } from 'date-fns'
 import { motion } from 'framer-motion'
 import type { CustomTransactionType } from '~/lib/types'
 
@@ -15,11 +16,17 @@ function TableContent({ transaction }: { transaction: CustomTransactionType }) {
         {transaction.transactions.map((monthTransaction) => {
           return (
             <tr key={monthTransaction.id}>
+              <td>{format(monthTransaction.purchaseDate, 'dd/MM/yyyy')}</td>
               <td>{monthTransaction.title}</td>
               <td>{monthTransaction.amount}</td>
             </tr>
           )
         })}
+        <tr className="text-gray-500">
+          <td></td>
+          <td>Total</td>
+          <td>{transaction.totalAmount}</td>
+        </tr>
       </tbody>
     </>
   )
@@ -37,7 +44,10 @@ export const CustomTable = ({
     >
       <table className="table table-pin-rows">
         {transactionsData.map((transaction) => (
-          <TableContent key={transaction.monthName} transaction={transaction} />
+          <TableContent
+            key={transaction.monthName + Math.random()}
+            transaction={transaction}
+          />
         ))}
       </table>
     </motion.div>
