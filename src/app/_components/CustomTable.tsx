@@ -1,8 +1,8 @@
 'use client'
 
-import { format } from "date-fns";
-import { motion } from 'framer-motion';
-import type { CustomTransactionType } from '~/lib/types';
+import { format } from 'date-fns'
+import { motion } from 'framer-motion'
+import type { CustomTransactionType } from '~/lib/types'
 
 function TableContent({ transaction }: { transaction: CustomTransactionType }) {
   return (
@@ -14,11 +14,13 @@ function TableContent({ transaction }: { transaction: CustomTransactionType }) {
       </thead>
       <tbody>
         {transaction.transactions.map((monthTransaction) => {
-          return <tr key={monthTransaction.id}>
-            <td>{format(monthTransaction.purchaseDate, "dd/MM/yyyy")}</td>
-            <td>{monthTransaction.title}</td>
-            <td>{monthTransaction.amount}</td>
-          </tr>
+          return (
+            <tr key={monthTransaction.id}>
+              <td>{format(monthTransaction.purchaseDate, 'dd/MM/yyyy')}</td>
+              <td>{monthTransaction.title}</td>
+              <td>{monthTransaction.amount}</td>
+            </tr>
+          )
         })}
         <tr className="text-gray-500">
           <td></td>
@@ -42,7 +44,10 @@ export const CustomTable = ({
     >
       <table className="table table-pin-rows">
         {transactionsData.map((transaction) => (
-          <TableContent key={transaction.monthName + Math.random()} transaction={transaction} />
+          <TableContent
+            key={transaction.monthName + Math.random()}
+            transaction={transaction}
+          />
         ))}
       </table>
     </motion.div>
