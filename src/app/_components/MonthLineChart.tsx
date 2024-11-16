@@ -29,10 +29,11 @@ export const MonthLineChart = ({
           {transactionsData.map((transaction) => {
             return (
               <Line
-                key={transaction.monthName}
+                key={transaction.monthName + Math.random()}
                 data={transaction.transactions}
                 type="monotone"
                 dataKey="amount"
+                name={transaction.monthName}
                 stroke={
                   uniqolor(transaction.monthName + Math.random(), {
                     lightness: 50,
