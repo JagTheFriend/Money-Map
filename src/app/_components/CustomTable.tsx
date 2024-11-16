@@ -42,7 +42,7 @@ export const CustomTable = ({
     >
       <table className="table table-pin-rows">
         {transactionsData.map((transaction) => (
-          <TableContent key={transaction.monthName} transaction={transaction} />
+          <TableContent key={transaction.monthName + Math.random()} transaction={transaction} />
         ))}
       </table>
     </motion.div>

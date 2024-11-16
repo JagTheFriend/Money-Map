@@ -72,7 +72,7 @@ export default function Features() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative z-10 py-10 max-w-7xl mx-auto inset-0 bg-gray-900/75 sm:bg-transparent from-gray-900/95 to-gray-900/25 bg-gradient-to-t">
         {features.map((feature, index) => (
           <motion.div
-            key={feature.title}
+            key={feature.title + Math.random()}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1, ease: 'easeInOut' }}
